@@ -38,6 +38,9 @@ class GameViewModel : ViewModel() {
         Log.d("GameFragment", "GameViewModel created!")
     }
 
+    private var wordsList: MutableList<String> = mutableListOf()
+    private lateinit var currentWord: String
+
     override fun onCleared() {
         super.onCleared()
         Log.d("GameFragment", "GameViewModel destroyed!")
@@ -69,34 +72,14 @@ class GameViewModel : ViewModel() {
     }
 
     // List of words used in the game
-    private var wordsList: MutableList<String> = mutableListOf()
-    private lateinit var currentWord: String
 
-    init {
-        getNextWord()
-    }
 
     /*
      * Updates currentWord and currentScrambledWord with the next word.
      */
-    private fun getNextWord() {
-        currentWord = allWordsList.random()
-        val tempWord = currentWord.toCharArray()
-        tempWord.shuffle()
+    private get
 
-        while (String(tempWord).equals(currentWord, false)) {
-            tempWord.shuffle()
-        }
-        if (wordsList.contains(currentWord)) {
-            getNextWord()
-        } else {
-            Log.d("Unscramble", "currentWord= $currentWord")
-            _currentScrambledWord.value = String(tempWord)
-            _currentWordCount.value = _currentWordCount.value?.inc()
-            wordsList.add(currentWord)
-        }
-    }
-
+    //establish an init block
     /*
      * Re-initializes the game data to restart the game.
      */
